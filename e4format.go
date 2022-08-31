@@ -41,6 +41,14 @@ func CheckFields(fields ...string) bool {
 	return true
 }
 
+func CheckMapKey(checkedMap map[string]interface{}) bool {
+	keys := make([]string, 0, len(checkedMap))
+	for k := range checkedMap {
+		keys = append(keys, k)
+	}
+	return CheckFields(keys...)
+}
+
 func Contains[T comparable](s []T, e T) bool {
 	for _, v := range s {
 		if v == e {
