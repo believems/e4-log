@@ -1,4 +1,4 @@
-package log_format
+package e4_log
 
 import (
 	"bytes"
@@ -13,7 +13,10 @@ func (extend *E4Extend) JsonString() (string, error) {
 		return "", err
 	} else {
 		var compact bytes.Buffer
-		json.Compact(&compact, data)
+		err := json.Compact(&compact, data)
+		if err != nil {
+			return "", err
+		}
 		return compact.String(), nil
 	}
 }

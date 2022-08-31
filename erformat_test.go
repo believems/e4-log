@@ -1,4 +1,4 @@
-package log_format
+package e4_log
 
 import (
 	"testing"
