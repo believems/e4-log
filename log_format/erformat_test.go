@@ -18,3 +18,6 @@ func TestE4Log_GrokParse(t *testing.T) {
 	}
 	println(e4log.JSon())
 }
+func TestCheckFields(t *testing.T) {
+	println(CheckFields("timestamp"))
+}

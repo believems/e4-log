@@ -30,6 +30,26 @@ var exampleE4log = E4Log{
 	Msg:         "This is Message",
 }
 
+var E4LogFields = []string{"timestamp", "host", "path", "application", "component", "log_level", "thread_name", "extend", "msg"}
+
+func CheckFields(fields ...string) bool {
+	for _, field := range fields {
+		if !Contains(E4LogFields, field) {
+			return false
+		}
+	}
+	return true
+}
+
+func Contains[T comparable](s []T, e T) bool {
+	for _, v := range s {
+		if v == e {
+			return true
+		}
+	}
+	return false
+}
+
 func NewE4Log() *E4Log {
 	return &E4Log{}
 }
@@ -85,7 +105,10 @@ func (e4log *E4Log) String() string {
 		return ""
 	} else {
 		var compact bytes.Buffer
-		json.Compact(&compact, data)
+		err = json.Compact(&compact, data)
+		if err != nil {
+			return ""
+		}
 		return compact.String()
 	}
 }
