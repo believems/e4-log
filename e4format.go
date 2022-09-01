@@ -9,7 +9,6 @@ import (
 type E4Log struct {
 	Timestamp   time.Time `json:"timestamp"`   //时间戳
 	Host        string    `json:"host"`        //主机地址
-	Path        string    `json:"path"`        //文件路径
 	Application string    `json:"application"` //组件
 	Component   string    `json:"component"`   //模块
 	LogLevel    string    `json:"log_level"`   //日志级别
@@ -21,7 +20,6 @@ type E4Log struct {
 var exampleE4log = E4Log{
 	Timestamp:   time.Now(),
 	Host:        "8.8.9.8",
-	Path:        "/var/log",
 	Application: "APPLICATION",
 	Component:   "COMPONENT",
 	LogLevel:    "DEBUG",
@@ -30,7 +28,7 @@ var exampleE4log = E4Log{
 	Msg:         "This is Message",
 }
 
-var E4LogFields = []string{"timestamp", "host", "path", "application", "component", "log_level", "thread_name", "extend", "msg"}
+var E4LogFields = []string{"timestamp", "host", "application", "component", "log_level", "thread_name", "extend", "msg"}
 
 func CheckFields(fields ...string) bool {
 	for _, field := range fields {
